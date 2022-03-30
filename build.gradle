@@ -12,7 +12,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.7.1'
+    junitVersion = '5.8.2'
 }
 
 sourceCompatibility = '17'
@@ -24,7 +24,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'csci2020u.assignmenttwo'
-    mainClass = 'csci2020u.assignmenttwo.HelloApplication'
+    mainClass = 'csci2020u.assignmenttwo.Main'
 }
 
 javafx {

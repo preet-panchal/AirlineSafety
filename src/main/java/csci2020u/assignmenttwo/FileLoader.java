@@ -3,6 +3,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.*;
 
+// helps load the csv file
 public class FileLoader {
     private final String filename;
     private final ObservableList<IncidentRecord> incidents;
@@ -12,6 +13,7 @@ public class FileLoader {
         this.incidents = FXCollections.observableArrayList();
     }
 
+    // read each row/line of the csv
     public void readCSV(){
         String line = "";
         try{
@@ -26,6 +28,7 @@ public class FileLoader {
         }
     }
 
+    // needed for creating new column in part 1
     public void newIncident(String[] column){
         float totalIncidents = Float.parseFloat(column[2]) + Float.parseFloat(column[5]);
         IncidentRecord airlineData = new IncidentRecord(column[0], Float.parseFloat(column[1]), Float.parseFloat(column[2]), Float.parseFloat(column[3]),

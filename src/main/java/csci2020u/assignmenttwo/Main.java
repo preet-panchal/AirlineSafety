@@ -1,6 +1,7 @@
 package csci2020u.assignmenttwo;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -26,47 +27,41 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class Main extends Application {
-    final static String austria = "Austria";
-    final static String brazil = "Brazil";
-    final static String france = "France";
-    final static String italy = "Italy";
-    final static String usa = "USA";
 
     @Override
     public void start(Stage stage) throws IOException {
+        FileLoader loadFile = new FileLoader("airline_safety.csv");
+        loadFile.readCSV();
+        ObservableList<IncidentRecord> incidents = loadFile.getIncidents();
 
+        // using the XYChart.Series library to generate bar plot
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         final BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis);
-        bc.setTitle("Airline Summary");
+        XYChart.Series series1 = new XYChart.Series(); // for fatal_incidents_85_99
+        XYChart.Series series2 = new XYChart.Series(); // for fatal_incidents_00_14
+
+        series1.setName("fatal_incidents_85_99");
+        series2.setName("fatal_incidents_00_14");
+        bc.setTitle("Airline Incident Summary");
         xAxis.setLabel("Airline");
         yAxis.setLabel("Number of Fatal Incidents");
 
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("Fatal Incidents 1985-1999");
-        series1.getData().add(new XYChart.Data(austria, 25601.34));
-        series1.getData().add(new XYChart.Data(brazil, 20148.82));
-        series1.getData().add(new XYChart.Data(france, 10000));
-        series1.getData().add(new XYChart.Data(italy, 35407.15));
-        series1.getData().add(new XYChart.Data(usa, 12000));
+        // getting incident values from columns to plot for each designated airline
+        for (IncidentRecord data : incidents) {
+            series1.getData().add(new XYChart.Data(data.getAirline(), data.getFatal_accidents_85_99()));
+            series2.getData().add(new XYChart.Data(data.getAirline(), data.getFatal_accidents_00_14()));
+        }
 
-        XYChart.Series series2 = new XYChart.Series();
-        series2.setName("Fatal Incidents 2000-2014");
-        series2.getData().add(new XYChart.Data(austria, 57401.85));
-        series2.getData().add(new XYChart.Data(brazil, 41941.19));
-        series2.getData().add(new XYChart.Data(france, 45263.37));
-        series2.getData().add(new XYChart.Data(italy, 117320.16));
-        series2.getData().add(new XYChart.Data(usa, 14845.27));
-
-
-        Scene scene  = new Scene(bc,800,600);
-        stage.setTitle("Assignment 2");
+        Scene scene = new Scene(bc,1800, 1000);
         bc.getData().addAll(series1, series2);
+        stage.setTitle("CSCI2020U Assignment 2 - Part 3");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
+        // Handles part 01 and 02 of assignment
         ProcessData data = new ProcessData();
         data.processData("airline_safety.csv");
         launch();

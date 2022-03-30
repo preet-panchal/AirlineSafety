@@ -1,14 +1,8 @@
 package csci2020u.assignmenttwo;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.canvas.Canvas;
 
 public class Controller {
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+    @FXML private Canvas canvas;
 }

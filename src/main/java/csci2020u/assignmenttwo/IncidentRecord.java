@@ -1,5 +1,6 @@
 package csci2020u.assignmenttwo;
 
+// holds the data from csv
 public class IncidentRecord {
     String airline;
     float seatAvail;
@@ -11,6 +12,7 @@ public class IncidentRecord {
     float fatalities_00_14;
     float totalIncidents;
 
+    // constructor
     public IncidentRecord(String airline, float seatAvail, float incidents_85_99, float fatal_accidents_85_99, float fatalities_85_99,
                           float incidents_00_14, float fatal_accidents_00_14, float fatalities_00_14, float totalIncidents) {
         this.airline = airline;
@@ -24,6 +26,7 @@ public class IncidentRecord {
         this.totalIncidents = totalIncidents;
     }
 
+    // getter methods for each column of csv
     public String getAirline() {
         return this.airline;
     }

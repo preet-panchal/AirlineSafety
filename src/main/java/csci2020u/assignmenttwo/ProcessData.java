@@ -87,12 +87,6 @@ public class ProcessData {
                 Element totalIncidents = doc.createElement("totalIncidents");
                 totalIncidents.appendChild(doc.createTextNode(String.valueOf(data.getTotalIncidents())));
                 Airline.appendChild(totalIncidents);
-
-                // setting attribute to element
-                //Attr attr = doc.createAttribute("company");
-                //attr.setValue("Ferrari");
-                //supercar.setAttributeNode(attr);
-
             }
 
             // write the content into xml file
@@ -104,14 +98,12 @@ public class ProcessData {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", String.valueOf(4));
             transformer.transform(source, result);
 
-            // Output to console for testing
-            // StreamResult consoleResult = new StreamResult(System.out);
-            // transformer.transform(source, consoleResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    // updating csv by adding new column for total incidents
     public void modifyCSV(ObservableList<IncidentRecord> incidents) {
         IncidentRecord records;
         List <List<String>> arrayList = new ArrayList<>();
@@ -156,21 +148,22 @@ public class ProcessData {
         }
 
         // replace with filename after
-        try (PrintWriter writer = new PrintWriter("airline_safety_updated.csv")){
+        try (PrintWriter writer = new PrintWriter("airline_safety.csv")){
             writer.append(string.toString());
         }
         catch (FileNotFoundException err){
-            //System.out.println(err.getMessage());
+            System.out.println(err.getMessage());
         }
-
     }
 
+    // for part 2 of assignment
     public void summaryXML(ObservableList<IncidentRecord> incidents) {
 
         Map<String, Float> avgs = new HashMap<>();
         Map<String, Float> mins = new HashMap<>();
         Map<String, Float> maxs = new HashMap<>();
 
+        // getting average for each column
         for (IncidentRecord data : incidents) {
             avgs.put("avg_incidents_85_99", data.getIncidents_85_99());
             avgs.put("avg_fatal_incidents_85_99", data.getFatal_accidents_85_99());
@@ -186,6 +179,7 @@ public class ProcessData {
             maxs.put(key, 0.0f);
         }
 
+        // getting max and min for each column
         for (IncidentRecord data : incidents) {
             mins.put("avg_incidents_85_99", Math.min(data.getIncidents_85_99(), mins.get("avg_incidents_85_99")));
             mins.put("avg_fatal_incidents_85_99", Math.min(data.getFatal_accidents_85_99(), mins.get("avg_fatal_incidents_85_99")));
@@ -215,23 +209,28 @@ public class ProcessData {
             Element rootElement = doc.createElement("Summary");
             doc.appendChild(rootElement);
 
+            // creating the xml file structure and adding contents
             for (String key : avgs.keySet()) {
                 // Stat element
                 Element statElement = doc.createElement("Stat");
                 rootElement.appendChild(statElement);
 
+                // Name element
                 Element Name = doc.createElement("Name");
                 Name.appendChild(doc.createTextNode(key));
                 statElement.appendChild(Name);
 
+                // Min element
                 Element Min = doc.createElement("Min");
                 Min.appendChild(doc.createTextNode(String.valueOf(mins.get(key))));
                 statElement.appendChild(Min);
 
+                // Max element
                 Element Max = doc.createElement("Max");
                 Max.appendChild(doc.createTextNode(String.valueOf(maxs.get(key))));
                 statElement.appendChild(Max);
 
+                // Avg element
                 Element Avg = doc.createElement("Avg");
                 Avg.appendChild(doc.createTextNode(String.valueOf(avgs.get(key))));
                 statElement.appendChild(Avg);
@@ -246,9 +245,6 @@ public class ProcessData {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", String.valueOf(4));
             transformer.transform(source, result);
 
-            // Output to console for testing
-            //StreamResult consoleResult = new StreamResult(System.out);
-            //transformer.transform(source, consoleResult);
         } catch (Exception e) {
             e.printStackTrace();
         }
