@@ -2,8 +2,7 @@
 
 ## Assignment 2
 ### Deadline: Friday, April 01, 11:59pm. 
-### Group Members: Preet Panchal (100707094) 
-###                Eihab Syed (100707448)
+#### Group Members: Preet Panchal (100707094), Eihab Syed (100707448)
 
 Template for assignment 3
 
