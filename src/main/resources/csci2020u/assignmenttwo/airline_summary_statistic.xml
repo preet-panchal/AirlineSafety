@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Summary>
+    <Stat>
+        <Name>avg_fatal_incidents_85_99</Name>
+        <Min>0.0</Min>
+        <Max>1.0</Max>
+        <Avg>0.017857144</Avg>
+    </Stat>
+    <Stat>
+        <Name>avg_incidents_85_99</Name>
+        <Min>0.0</Min>
+        <Max>9.0</Max>
+        <Avg>0.16071428</Avg>
+    </Stat>
+    <Stat>
+        <Name>avg_fatal_incidents_00_14</Name>
+        <Min>0.0</Min>
+        <Max>2.0</Max>
+        <Avg>0.035714287</Avg>
+    </Stat>
+    <Stat>
+        <Name>avg_fatalities_00_14</Name>
+        <Min>0.0</Min>
+        <Max>2.0</Max>
+        <Avg>0.035714287</Avg>
+    </Stat>
+    <Stat>
+        <Name>avg_incidents_00_14</Name>
+        <Min>0.0</Min>
+        <Max>2.0</Max>
+        <Avg>0.035714287</Avg>
+    </Stat>
+    <Stat>
+        <Name>avg_total_incidents_85_14</Name>
+        <Min>0.0</Min>
+        <Max>11.0</Max>
+        <Avg>0.19642857</Avg>
+    </Stat>
+    <Stat>
+        <Name>avg_fatalities_85_99</Name>
+        <Min>0.0</Min>
+        <Max>82.0</Max>
+        <Avg>1.4642857</Avg>
+    </Stat>
+</Summary>

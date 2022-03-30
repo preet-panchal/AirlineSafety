@@ -2,8 +2,6 @@ package csci2020u.assignmenttwo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.io.*;
-import java.util.Arrays;
-import java.util.Map;
 
 public class FileLoader {
     private final String filename;
